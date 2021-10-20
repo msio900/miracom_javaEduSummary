@@ -15,5 +15,10 @@
 > 하승현 강사
 
 * 21.10.19(화) [1일차](./211019JAVA1일차.md) : `J2SE`,` J2EE`, `JRE`, `OOP`
+  * [Greeting](./miracom_edu/javaWorkspace/java01_Greeting)
+  * [NoteBook](./miracom_edu/javaWorkspace/java02_NoteBook)
 * 21.10.19(수) [2일차](./211020JAVA2일차.md) : `DataType`, `Method` & `Field`, `Constructor`, `returnType`
+  * [DataType](./miracom_edu/javaWorkspace/java03_DataType)
+  * [Constructor](./miracom_edu/javaWorkspace/java04_Constructor)
+  * [work01](./miracom_edu/javaWorkspace/work01)
 
