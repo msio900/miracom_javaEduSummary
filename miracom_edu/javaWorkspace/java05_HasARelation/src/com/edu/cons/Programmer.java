@@ -32,6 +32,10 @@ public class Programmer {
 	{
 		this.noteBook = noteBook;
 	}
+	//주입한 노트북을 다시 받아오는 루트도 추가한다.
+	public NoteBook getNoteBook() {
+		return noteBook;
+	}
 	
 	public void setProgrammerInfo(String name,
 			String address, String mainSkill, int salary) {
@@ -46,5 +50,9 @@ public class Programmer {
 	public int getAnnualSalary() {
 		return salary * 12;
 		
+	}
+	//
+	public String getMainSkill() {
+		return mainSkill;
 	}
 }
