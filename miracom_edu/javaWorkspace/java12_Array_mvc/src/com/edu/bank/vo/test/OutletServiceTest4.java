@@ -1,5 +1,7 @@
 package com.edu.bank.vo.test;
 
+import com.edu.bank.service.CustomerService;
+import com.edu.bank.vo.Customer;
 import com.edu.bank.vo.Product;
 
 public class OutletServiceTest4 {
@@ -27,7 +29,7 @@ public class OutletServiceTest4 {
 		cust[1].buyProducts(pros1);
 		
 		CustomerService service = new CustomerService();
-		////////////////////////////// 아래에서는 Service 클래스 메소드를 호출할 것입니다./////////////
+		//////////////// 아래에서는 Service 클래스 메소드를 호출할 것입니다./////////////
 	}//main
 
 }//class
