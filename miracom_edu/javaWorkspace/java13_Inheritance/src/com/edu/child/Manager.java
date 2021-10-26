@@ -1,15 +1,30 @@
 package com.edu.child;
 /*
- * Employee의 자식 클래스...
+ * Employee의 자식 클래스..
  * 부모가 가진 모든 성질을 물려받고
- * 			+
- * 자신만의 멤버를 추가함....
+ *         +
+ * 자신만의 멤버를 추가..
  * ::
- * 
+ * 상속에서 자식크래스
+ * 필드 --> 자신만의 필드를 추가
+ * 메소드 --> 부모가 물려준 기능을 자기에게 맞게 고쳐쓴다
+ * (상속관계에 있는 2개의 클래스에서만 적용..오버라이딩)
  */
+
 
 import com.edu.parent.Employee;
 import com.edu.util.MyDate;
+
+/*
+ * Employee의 자식 클래스...
+ * 부모가 가진 모든 성질을 물려받고
+ * 
+ * 자신의 멤버만을 추가
+ * ::
+ * 상속에서 자식 클래스
+ * 필드 --> 
+ */
+
 
 //부모Employ로 부터 확장된 자식 클래스Manager를 선언
 public class Manager extends Employee{
@@ -42,6 +57,13 @@ public class Manager extends Employee{
 	 */
 	public String getDetails() {
 		return super.getDetails()+", "+dept;
+	}
+	public void chageDept(String dept) { //자식만의 멤버로 추가됨. Overiding과 무관함.
+		this.dept = dept;
+	}
+
+	public String getDept() {
+		return dept;
 	}
 
 }

@@ -21,7 +21,7 @@ public class Employee {
 	}
 	
 	public String getDetails() {
-		return name+", "+birthDate.getDate()+", "+salary;
+		return name+", "+birthDate+", "+salary;
 	}
 	
 }

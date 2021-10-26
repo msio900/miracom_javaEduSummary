@@ -12,7 +12,12 @@ public class MyDate {
 		this.day = day;
 	}
 	
-	public String getDate() {
+/*	public String getDate() {
+		return year+"-"+month+"-"+day;
+	}
+*/	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
 		return year+"-"+month+"-"+day;
 	}
 
