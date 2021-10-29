@@ -40,7 +40,5 @@ public class ArrayListTest3 {
 			if (list.get(i).equals("º≠¿Â»∆"))
 				System.out.println(list.get(i));
 		}
-		
-
 	}//main
 }//class
