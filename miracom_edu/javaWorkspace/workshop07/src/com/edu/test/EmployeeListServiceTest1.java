@@ -33,9 +33,12 @@ public class EmployeeListServiceTest1 {
 				
 //		System.out.println("======================== 2. delete ================================== ");
 //		service.deleteEmployee("서장훈");
-//		
+//		service.findEmployees();
+		
+//		System.out.println("======================== 3. find ================================== ");
+
 //		service.findEmployees("서초동");
-//	
+//		service.findEmployees();
 //		System.out.println("========================");
 
 	}
