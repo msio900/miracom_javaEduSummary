@@ -30,7 +30,6 @@ public class RuntimeExceptionTest2 {
          }
 			i++;
 		}//
-		
 		System.out.println("while loop the end...");
 	}//
 }//

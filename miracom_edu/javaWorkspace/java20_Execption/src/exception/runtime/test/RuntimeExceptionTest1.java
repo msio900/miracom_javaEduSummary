@@ -25,8 +25,6 @@ package exception.runtime.test;
  * 
  */
 
-import java.awt.image.AreaAveragingScaleFilter;
-
 import javax.management.openmbean.ArrayType;
 
 public class RuntimeExceptionTest1 {
