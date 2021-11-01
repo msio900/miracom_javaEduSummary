@@ -42,12 +42,24 @@ public class CompileTest3 {
 										//main method를 호출한 곳(JVM)으로 예외가 던져진다!!
 	public static void main(String[] args)  {
 		FileReading3 fr = new FileReading3();
-		String path = "C:\\Users\\kimminsung\\OneDrive\\miracom_institute\\miracom_javaEduSummary\\miracom_edu\\util\\message.txt";
+		String path = "C:\\Users\\kimminsung\\OneDrive\\miracom_institute\\miracom_javaEduSummary\\miracom_edu\\util\\messa.txt";
 		try {
 			fr.readFile(path);
 		} catch (FileNotFoundException e) {
+			//e.printStackTrace();
+			//System.out.println(e.getMessage()); //sysout안에서 출력
 		} catch (IOException e) {
+			System.out.println(e.getMessage()); //sysout안에서 출력
+			System.out.println("그런 파일은 없습니다.");
 		}
 		System.out.println("파일을 잘 읽어들였습니다..");
 	}
 }
+/*
+printStackTrace()
+getMessage()
+둘 다 예외가 발생한 원인에 대해서 메세지를 출력하는 기능을 한다.
+
+ 둘 다 일반적으로
+ catch문 안에서 사용되어지는 기능이다.
+ */
