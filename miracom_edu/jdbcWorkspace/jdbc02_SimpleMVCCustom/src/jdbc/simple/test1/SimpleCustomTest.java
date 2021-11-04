@@ -48,6 +48,7 @@ public class SimpleCustomTest {
 	SimpleCustomTest(){ 
 		//
 	}
+	//DML에 해당하는 기능  - > VO
 	//INSERT...
 	public void addCustom(int num, String name, String addr) throws SQLException{
 		Connection conn = null;
