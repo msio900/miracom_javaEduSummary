@@ -48,7 +48,7 @@ public class DBConnectionTest {
 		*/
 		
 		//delete문을 작성...
-		String query1 = "DELETE FROM custom WHERE num-?";
+		String query1 = "DELETE FROM custom WHERE num=?";
 		ps1 = conn.prepareStatement(query1);
 		ps1.setInt(1, 444);
 		System.out.println(ps1.executeUpdate()+" row DELETE OK!!");
