@@ -168,22 +168,187 @@ SELECT ename FROM emp WHERE ename LIKE '_A%';
 -- 사원의 이름 중에서 R 철자가 포함된 모든 사원을 검색
 SELECT ename FROM emp WHERE ename LIKE '%R%';
 
+-- 1108
+/*
+그룹함수 :: 
+count() - 테이블의 행의 갯수를 리턴
+		count(column)
+        count(*) == count(-1)
+avg() - 평균값을 리턴
+sum() - 총합을 리턴
+max() - 최대값 리턴
+min() - 최소값 리턴
+*/
+
+-- 부서의 수를 출력
+SELECT COUNT(deptno) FROM emp; -- 10, 20, 30, 40 ...4개의 부서가 있다.
+SELECT COUNT(distinct (deptno)) FROM emp;
+
+-- emp 테이블의 전체 행의 수를 출력
+SELECT COUNT(emp) FROM emp;
+SELECT COUNT(*) FROM emp;
+SELECT COUNT(-1) FROM emp;
+
+-- 문제1. emp 테이블에서 가장 최근에 입사한 사원의 입사일을 검색...그룹함수 사용
+SELECT MAX(hiredate) FROM emp;
+SELECT MIN(hiredate) FROM emp;
+
+-- 문제2. 모든 사원의 평균급여를 구하는데 소수점 2자리까지 출력되도록
+SELECT ROUND(AVG(sal),2) 평균급여 FROM emp; -- 중첩함수
+
+-- 문제3. 
+/*
+그룹함수와 null값
+:
+null값은 그룹함수에서 제외시킨다.
+*/
+SELECT COUNT(deptno) FROM emp; -- 14. 컬럼에 대한 행의 수 (결국 전체 행의 수가 리턴)
+SELECT COUNT(empno) FROM emp;
+SELECT COUNT(comm) FROM emp;
 
 
+-- 문제4. 모든 사원의 보너스(comm)의 평균을 구하세요.
+SELECT AVG(comm) FROM emp; -- 550..잘못된 결과
+SELECT ROUND(AVG(ifnull(comm, 0))) AVGcomm FROM emp; -- 157 널 값을 제외시킨다.
+
+/*
+GROUP BY절
+
+1.
+그룹함수에서 적용되지 않는 컬럼이 
+SELECT절에 명시되어서는 안된다. 
 
 
+2. 
+그룹함수에서 적용되지 않는 컬럼이
+SELECT절에 명시 되기 위해서는 GROUP BY 절에 나열되어져야한다. 
 
+3. 
+SELECT deptno, AVG(sal) FROM emp;
+그룹함수에서 적용되지 않는 컬럼이 있다는 것은
+해당 컬럼으로 그룹을 세분화 시키겠다는 저의가 있다.
+*/ 
+-- emp테이블에서 모든 사원의 급여의 평균을 검색...GROUP BY 절을 사용
+SELECT deptno, AVG(sal) FROM emp; -- X
+SELECT deptno, ROUND(AVG(sal))
+FROM emp
+GROUP BY deptno;
 
+SELECT deptno, ROUND(AVG(sal))
+FROM emp
+GROUP BY deptno
+ORDER BY ROUND(AVG(sal));
 
+SELECT deptno, ROUND(AVG(sal)) AVGsal
+FROM emp
+GROUP BY deptno
+ORDER BY AVGsal;
 
+/*
+1. where 절에서는 그룹함수를 사용할 수 없다.
+where 절은 일종의 조건을 부여해서 select해오는 절이기 때문에
+grouping이 일어나기 전에 먼저 실행된다.alter
 
+2. 문제5번의 경우,
+"부서별 평균 급여를 구했다."
+10 ---- 2517
+20 ---- 1790
+30 ---- 2190
 
+"이중에서 평균급여가 2000이상인 부서와 그 부서의 평균급여를 구하라"
 
+포인트는 GROUP BY절에 결과를 다시 조건을 줘서 디스플레이 하려한다....
 
+		이때 HAVING 절을 사용한다.
+        HAVING절은 GROUP BY 절 뒤에 나온다.
 
+*/
 
+-- 문제5. 부서별 평균급여가 2000달러 이상인 부서와 평균 급여를 검색
+SELECT deptno, ROUND(AVG(sal)) avgSal
+FROM emp
+WHERE ROUND(AVG(sal)) >2000
+GROUP BY deptno; -- X
 
+SELECT deptno, ROUND(AVG(sal)) avgSal
+FROM emp
+GROUP BY deptno
+HAVING avgSal>2000;
 
+-- SUB QUERY
+/*
+CLARK의 급여보다 더 많은 급여를 받는 사원의 이름과 급여를 검색
+*/
+SELECT * FROM emp;
+-- 1)
+SELECT sal FROM emp WHERE ename='CLARK'; -- 2450
+-- 2) 1) 결과의 값을 가지고 다시 쿼리문으로 질의를 진행한다.
+SELECT ename, sal FROM emp WHERE sal>2450;
 
+/* 위 결과처럼 먼저 질의를 통해서 값을 받은 후에
+ 그 값을 다시 전체 쿼리문에 넣어서 돌릴때
+ 우리는 Sub query를 사용해서 하나의 쿼리문으로 수행할 수 있다.
+ 
+ ::
+ 
+ - 서브쿼리는 반드시 ( )안에 쓰여져야한다.
+ - ()의 의미는 우선 먼저 진행된다는 뜻이다.
+ - SUB QUERY	VS	MAIN QUERY
+ - INNER QUERY	VS	OUTER QUERY
+*/
+-- WHERE절 다음에 오는 서브쿼리
+SELECT ename, sal 
+FROM emp 
+WHERE sal>(SELECT sal FROM emp WHERE ename='CLARK');
 
+-- 문제 6. ename이 KING인 사원과 같은 부서에서 일하는 사원을 검색
+-- 위 문제에서의 ?
+SELECT * 
+FROM emp
+WHERE deptno = (SELECT deptno FROM emp WHERE ename="KING");
 
+-- 문제 7. 사원중에서 급여를 2900이상 받는 사원과 동일한 부서에서 일하는 사원을 검색
+SELECT *
+FROM emp
+WHERE deptno = (SELECT distinct(deptno) FROM emp WHERE sal>2900); -- x
+-- 위에서 에러가 나는 이유는 다중행 서브쿼리인데  = 라는 단일행 연산자와 비교를 해서이다. 
+-- 다중행 서브쿼리 결과는 다중행 연산 IN으로 연결시켜야 한다.
+
+SELECT distinct(deptno) FROM emp WHERE sal>2900;
+-- 단일행 연산자 !=, =, >, < / 다중행 연산자 IN ANY ALL
+
+SELECT *
+FROM emp
+WHERE deptno IN (SELECT distinct(deptno) FROM emp WHERE sal>2900);
+
+SELECT * FROM emp; -- 7369, 7566, 7783
+-- emp 테이블에서 사원번호가 7369이거나 7566이거나 7782인 사원을 검색
+-- 1) 성능이 가장 안좋은 경우
+SELECT ename, empno FROM emp WHERE empno=7369;
+SELECT ename, empno FROM emp WHERE empno=7566;
+SELECT ename, empno FROM emp WHERE empno=7782;
+
+-- 2)
+SELECT ename, empno 
+FROM emp 
+WHERE empno=7369
+OR empno=7566
+OR empno=7782;
+-- 3) IN 연산자
+SELECT ename, empno 
+FROM emp 
+WHERE empno IN (7369, 7566, 7782);
+
+-- 문제 8.
+-- 사원 번호가 7369가 아니고, 7566도 아니고 7782도 아닌 사원을 검색
+-- 1)
+SELECT ename, empno 
+FROM emp 
+WHERE empno NOT IN (7369, 7566, 7782);
+
+-- 2)
+SELECT ename, empno 
+FROM emp 
+WHERE empno!=7369
+AND empno!=7566
+AND empno!=7782;
