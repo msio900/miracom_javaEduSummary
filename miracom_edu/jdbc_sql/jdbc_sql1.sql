@@ -352,3 +352,49 @@ FROM emp
 WHERE empno!=7369
 AND empno!=7566
 AND empno!=7782;
+
+
+/*
+JOIN
+:
+2개(하나이상)의 테이블에서 질의를 던지는 경우
+각각의 사원이 어느 부서에서 일하는지를 검색...사원의 이름과 업무, 부서위치를 검색
+SELECT * FROM emp; -- 사원의 정보를 검색
+SELECT * FROM dept; --사원이 소속된 부서의 정보를 검색
+
+SELECT * FROM emp, dept; -- 56 --> 14줄 아닌가?
+SELECT ename, dname, loc FROM emp, dept; -- 56
+Cartesian Product는 두 테이블의 단순한 연산결과를 의미한다.
+emp --> 14
+dept --> 4
+Cartesian Product 14 * 4 = 56
+Cartesian Product는 언제 발생할까?
+1) 조인 조건을 안주었거나
+2) 조인 조건을 잘못줬거나
+*/
+SELECT * FROM emp;
+SELECT * FROM dept;
+
+-- 문제 8. emp, dept 테이블에서 사원의 이름과 부서명, 부서위치를 검색
+SELECT ename, dname, loc FROM emp, dept
+WHERE emp.deptno = dept.deptno;
+
+
+-- 1)성능에 가장 안좋다.
+SELECT ename, dname, loc FROM emp, dept
+WHERE emp.deptno = dept.deptno;
+
+-- 2) 각각의 컬럼을 어느 테이블에서 검색하는지를 지정하는 것이 좋다. ---테이블 Alias
+SELECT e.ename, d.dname, d.loc FROM emp e, dept d
+WHERE e.deptno = d.deptno;
+
+-- 문제 9.WHERE 절에는 조인 조건과 비조인 조건이 당연히 같이 사용된다.
+/*
+사원이름, 급여, 부서번호, 부서이름, 부서위치를 검색
+단, 급여가 2000달러 이상이고, 30번 부서에 한해서만 검색을 합니다. 
+*/
+
+SELECT e.ename, e.sal, e.deptno, d.dname, d.loc FROM emp e, dept d
+WHERE e.deptno = d.deptno
+AND e.sal > 2000
+AND e.deptno = 30;
