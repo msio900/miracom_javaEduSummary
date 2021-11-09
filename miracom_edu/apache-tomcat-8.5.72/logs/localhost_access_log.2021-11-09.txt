@@ -1,0 +1,2 @@
+127.0.0.1 - - [09/Nov/2021:09:45:15 +0900] "GET / HTTP/1.1" 200 11354
+0:0:0:0:0:0:0:1 - - [09/Nov/2021:09:45:15 +0900] "GET /web01_First/WEB-INF/classes/web/servlet/MyServlet.java HTTP/1.1" 404 721
