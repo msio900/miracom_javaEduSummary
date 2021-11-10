@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>MultiForm Servlet...</h2>
+<!-- form 태그::
+	 1. 다양한 입력양식 폼을 하나로 묶는 역할을 한다.
+	 2. 크게 2가지 속성이 있다.
+	    필수 속성은 action 으로 연결된 서버상의 페이지(S.D / D.D)를 지정한다.
+	  Optional한 속성으로 method...값으로 GET / POST방식으로 나뉜다.
+	   디폴트는 get방식이다.
+ -->
+<form action="MF" method="post">
+	NAME : <input type="text" name="name"><br><br>
+	ADDR : <input type="text" name="addr"><br><br>
+	<input type="submit" value="Data Send">
+</form>
+
+<!-- 가장 기본적인 페이지 연결방식....get방식..."get it"... -->
+<a href="MF">MultiForm Servlet으로 이동합니다.</a>
+</body>
+</html>

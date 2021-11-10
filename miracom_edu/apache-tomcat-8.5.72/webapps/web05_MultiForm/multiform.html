@@ -1,0 +1,54 @@
+<!-- 
+form 태그안에서 묶일수 있는
+다양한 입력 폼을 만들어본다.
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function push() {
+		alert("버튼 눌렀니?");
+	}
+</script>
+</head>
+<body>
+<h2 align="center">Multi Form Test</h2>
+<form action="MFS"  method="POST">
+ID <input type="text" name="id"><br><br>
+PASS <input type="password" name="password"><br><br>
+
+<strong>좋아하는 점심 메뉴를 선택하세요(다중 선택 가능)</strong><br>
+<input type="checkbox" name="menu" value="새우볶음밥">새우볶음밥
+<input type="checkbox" name="menu" value="김치찌개">김치찌개
+<input type="checkbox" name="menu" value="짜장면">짜장면
+<input type="checkbox" name="menu" value="크림파스타">크림파스타
+<br><br>
+<hr>
+<strong>당신의 성별 확인</strong>
+<input type="radio" name="gender" value="F">여성
+<input type="radio" name="gender" value="M">남성
+<br><br>
+<textarea rows="10" cols="50" name="intro">
+	방명록 작성하세요...
+	
+</textarea>
+<br><br>
+<input type="reset" value="CLEAR">
+<!-- submit :: form에 필수 속성이 action으로 연결되는 것 form안에 입력된 모든 데이터를 가지고 감. -->
+<input type="submit" value="Send">
+<input type="button" value="BTN" onclick="push()">
+
+</form>
+</body>
+
+
+
+
+
+
+
+
+
+</html>
