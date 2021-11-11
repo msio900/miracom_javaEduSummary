@@ -25,6 +25,8 @@
 	<%
 		}
 	%>
+	<HR>
+	<b><a href="index.html">Home</a></b>
 </table>
 </body>
 </html>
