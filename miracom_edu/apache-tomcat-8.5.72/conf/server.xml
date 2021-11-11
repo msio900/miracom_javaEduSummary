@@ -153,7 +153,9 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\kimminsung\OneDrive\miracom_institute\miracom_javaEduSummary\miracom_edu\apache-tomcat-8.5.72\webapps\web06_LifeCycle" path="/web06_LifeCycle" reloadable="true" source="org.eclipse.jst.jee.server:web06_LifeCycle"/></Host>
+      <Context docBase="C:\Users\kimminsung\OneDrive\miracom_institute\miracom_javaEduSummary\miracom_edu\apache-tomcat-8.5.72\webapps\web10_CafeMember_MVC" path="/web10_CafeMember_MVC" reloadable="true" source="org.eclipse.jst.jee.server:web10_CafeMember_MVC">
+	<Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory" maxActive="500" maxIdle="30" name="jdbc/mysql" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/scott?serverTimezone=Asia/Seoul" username="root"/>
+</Context></Host>
     </Engine>
   </Service>
 </Server>

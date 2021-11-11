@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>RESULT PAGE</h3>
-<!-- EL 기법 request.getParameter("cnt"); 코드와 동일한 기능-->
-<B>Count Value : ${param.cnt}</B>
+<h1>Result</h1>
+<h3>${param.choose}</h3>
 </body>
 </html>
