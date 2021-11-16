@@ -58,11 +58,38 @@ public class FrontController extends HttpServlet {
 		}else if(command.equals("logout")) { //전체회원 보기 요청..결과 페이지 연결
 			//
 			path=logout(request,response);
+		}else if(command.equals("update")) { //전체회원 보기 요청..결과 페이지 연결
+			//
+			path=update(request,response);
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		//? 
 	}//doProcess
+	protected String update(HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		String name = request.getParameter("name");
+		String address = request.getParameter("address");
+		
+		MemberVO vo = new MemberVO(id, password, name, address);
+		String path = "index.jsp";
+		try {
+			MemberDAOImpl.getInstance().updateMember(vo);
+			//login, 회원정보 수정은 반드시 ....Session에 값을 바인딩...
+			HttpSession session = request.getSession();
+			if(session.getAttribute("vo")!=null) {
+				session.setAttribute("vo", vo);
+				path = "update_view.jsp";
+				
+			}
+			
+			//바인딩할 필요가 없는 경우...대부분 redirect페이지 연결인 경우가 많다.
+		} catch (Exception e) {
+
+		}
+		return path;
+	}
 	protected String logout(HttpServletRequest request, HttpServletResponse response) {
 		String path = "index.jsp";
 		//Session을 죽이는 로직을 작성

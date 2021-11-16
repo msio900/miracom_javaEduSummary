@@ -19,6 +19,7 @@ public interface MemberDAO {
 	
 	//추가
 	MemberVO login(String id, String password) throws SQLException;
+	void updateMember(MemberVO vo) throws SQLException;
 	
 }
 

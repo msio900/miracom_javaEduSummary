@@ -152,9 +152,29 @@ public class MemberDAOImpl implements MemberDAO{
 		}finally {
 			closeAll(rs, ps, conn);
 		}
-
 		return vo;
-	}	
+		
+	}
+		@Override
+		public void updateMember(MemberVO vo) throws SQLException {
+			Connection conn = null;
+			PreparedStatement ps = null;
+			try{
+				conn=  getConnection();
+				String query = "UPDATE member SET password=?, name=?, address=? WHERE id=?";
+				ps = conn.prepareStatement(query);
+				System.out.println("PreparedStatement 생성됨...updateMember");
+				
+				ps.setString(1, vo.getPassword());
+				ps.setString(2, vo.getName());
+				ps.setString(3, vo.getAddress());
+				ps.setString(4, vo.getId());
+				
+				System.out.println(ps.executeUpdate()+" row UPDATE OK!!");
+			}finally{
+				closeAll(ps, conn);
+			}	
+		}
 
 	// 일종의 DAO 단위 테스트
 //	public static void main(String[] args)throws Exception{
