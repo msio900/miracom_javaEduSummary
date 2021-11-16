@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>${vo.name}님의 정보가 수정되셨습니다.</h3>
-<h3>${vo.address}로 이사 가셨군요!!</h3>
-<h3><a href = "index.jsp">Home....</a></h3>
+<strong>${vo}</strong>
 </body>
 </html>
