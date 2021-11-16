@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>c:if 문법</h2>
-<form action="cif1_result.jsp">
-NUM <input type="text" name="num">
-<input type="submit" value="SEND">
-</form>
+<strong>${vo}</strong>
 </body>
 </html>

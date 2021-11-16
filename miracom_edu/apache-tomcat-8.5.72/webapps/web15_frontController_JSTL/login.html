@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Login Page</h2>
+<!--  
+hidden tag
+화면에 값이 노출되지 않으면서
+서버로 특정한 값만 전송할때 사용하는 태그..
+-->
+<form action="front.do" method="post">
+	<input type="hidden" name="command" value="login">
+	ID : <input type="text" name="id" required="required"><br><br>
+	PASSWORD : <input type="password" name="password" required="required"><br><br>
+	<input type="submit" value="Login">
+</form>
+</body>
+</html>
