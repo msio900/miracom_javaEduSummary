@@ -4,6 +4,7 @@ package spring.service.hello;
  * FileName : Hello.java
  * ㅇ package / private Field(property) / Constructor / getter,setter / 필요한 Method 
  * ㅇ를 갖는 빈 규약을 준한 일반적인 Bean ::  POJO(Plain Old Java Object)
+ * ㅇ FQCN Spring.service.hello.Hello
  */
 public class Hello{
 	
