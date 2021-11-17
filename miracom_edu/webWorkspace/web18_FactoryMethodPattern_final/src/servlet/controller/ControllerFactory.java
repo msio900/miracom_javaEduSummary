@@ -13,9 +13,9 @@ public class ControllerFactory {
 	public Controller createController(String command) {
 		Controller controller  =null;
 		
-		if(command.equals("find")) {
+		if(command.equals("find.do")) {
 			controller = new FindController();
-		}else if (command.equals("register")) {
+		}else if (command.equals("register.do")) {
 			controller = new RegisterController();
 			
 		}

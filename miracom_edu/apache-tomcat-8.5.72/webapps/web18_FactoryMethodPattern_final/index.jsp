@@ -46,9 +46,9 @@ c:choose
 	<c:choose>
 		<c:when test="${!empty vo}"> <!--${vo != null}  -->
 		<!-- 로그인 후 -->
-			<a href="front.do?command=showAll">전체 회원 명단 보기</a><p></p>
+			<a href="showAll.do">전체 회원 명단 보기</a><p></p>
 			<a href="update.jsp">회원정보 수정하기</a><p></p>
-			<a href="front.do?command=logout">로그아웃 하기</a><p></p>
+			<a href="logout.do">로그아웃 하기</a><p></p>
 		</c:when>
 		<c:otherwise>
 		<!-- 로그인 전 -->

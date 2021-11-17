@@ -10,7 +10,7 @@ import servlet.model.MemberVO;
 public class FindController implements Controller{
 
 	@Override
-	public String requestHandle(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView requestHandle(HttpServletRequest request, HttpServletResponse response) {
 		 String id = request.getParameter("id"); // 폼 값 받기
 	     String path = "index.jsp";
 	      try {
@@ -23,7 +23,7 @@ public class FindController implements Controller{
 	         
 	      }
 	      
-	      return path;
+	      return new ModelAndView(path); //result_view.jsp / forward방식으로 페이지 이동
 
 	}
 
