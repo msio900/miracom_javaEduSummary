@@ -6,6 +6,9 @@ import spring.service.dice.DiceA;
 /*
  *	FileName : Player01.java
  *	ㅇ Dice인터페이스를 hasing함으로써 결합도를 낮추는 로직을 작성..
+ *
+ *	ㅇ DiceAImpl, DiceBImpl, DiceCImpl, DiceDImpl....어떤 주사위가 추가되더라도 
+ *		기본적인 로직의 추가나 수정없이 사용 가능하다
  */
 public class Player02 {
 	
