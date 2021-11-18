@@ -31,7 +31,7 @@ public class UserTestApp01 {
 		User user01 = (User)factory.getBean("user01");
 		System.out.println(user01);
 		
-		/*System.out.println("\n=============================================================================");
+		System.out.println("\n=============================================================================");
 		User user02 = (User)factory.getBean("user02");
 		System.out.println(user02);
 		
@@ -45,7 +45,7 @@ public class UserTestApp01 {
 		
 		System.out.println("\n=============================================================================");
 		User user05 = (User)factory.getBean("user05");
-		System.out.println(user05);*/
+		System.out.println(user05);
 		
 	
 

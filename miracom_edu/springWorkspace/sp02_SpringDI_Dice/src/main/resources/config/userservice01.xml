@@ -4,5 +4,39 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://www.springframework.org/schema/beans 
 												 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-    	
+   	<!-- User Definition Bean정의 :: setter 단순 파라미터값 주입 :: id(01유저), age(01)-->
+   	<bean id="user01" class="spring.service.domain.User">
+   		<property name="userId" value="01유저"/>
+   		<property name="age" value="01"/>
+   	   	</bean>
+   	   	
+   	<!-- API Bean 정의 ::  -->
+   	<bean id="password" class="java.lang.String">
+   		<constructor-arg value="7777"/>
+   	</bean>
+   	<!-- User Definition Bean정의 :: setter 단순 파라미터값 주입 :: id(02유저), age(02), password=7777(위에서 만든 빈을 이용)-->
+   	<bean id="user02" class="spring.service.domain.User">
+   		<property name="userId" value="02유저"/>
+   		<property name="age" value="02"/>
+   		<property name="password" ref="password"/>   		
+   	</bean>
+   	
+   	<!-- User Definition Bean정의 ::DI 없음 -->
+   	<bean id="user03" class="spring.service.domain.User"/>
+   	
+   	<!-- User Definition Bean정의 ::id=user04 :: 생성자 단순 파라미터 값 주입 :: id(04유저), age(04) -->
+   	<bean id="user04" class="spring.service.domain.User">
+   	<!-- 생성자로 값을 주입할때, 그리고 주입되는 값이 여러개일때, 주입의 순서를 신경써야 한다!!
+   		이런 이유로 현업에서는 생성자 값 주입보다는 setter값 주입을 더 선호한다. -->
+   		<constructor-arg value="04유저" index="1"/>
+   		<constructor-arg value="04" type="int"/>
+   	</bean>
+   	
+   	<!-- User Definition Bean정의 ::id=user05 :: 생성자 단순 파라미터 값 주입 :: id(05유저), age(05), password(0505) -->
+   	<bean id="user05" class="spring.service.domain.User">
+   		<constructor-arg value="05유저" type="String"/>
+   		<constructor-arg value="05" type="int"/>
+   		<constructor-arg value="0505" index="1"/>
+   	</bean>
+   	
 </beans>
