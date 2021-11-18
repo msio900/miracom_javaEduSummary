@@ -23,4 +23,8 @@
  		</dataSource>
  	</environment>
  </environments>
+ <!-- 4. SQL Mapper -->
+ <mappers>
+ 	<mapper resource="sql/mysawon_mapping.xml"/>
+ </mappers>
  </configuration>
