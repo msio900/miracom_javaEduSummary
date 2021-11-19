@@ -8,5 +8,10 @@
 		INTO mysawon (id, pwd, name, age, hiredate)
 		VALUE (#{id}, #{pwd},#{name},#{age},curdate())
 	</insert>
- 
+ 	<select id="sawonList" resultType="mySawon"> <!-- conection에 제너릭이 들어감. -->
+ 		SELECT
+ 		num, id, name, age, hiredate
+ 		FROM mysawon
+ 		ORDER BY num DESC
+ 	</select>
  </mapper>
