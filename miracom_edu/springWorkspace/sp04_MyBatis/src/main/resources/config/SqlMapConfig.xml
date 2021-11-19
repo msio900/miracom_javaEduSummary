@@ -28,5 +28,6 @@
 	<!-- sql mapper -->
 	<mappers>
 		<mapper resource="sql/mybatis-userservice-mapping.xml"/>
+		<mapper resource="sql/mybatis-userservice-mapping01.xml"/>
 	</mappers>
 </configuration>

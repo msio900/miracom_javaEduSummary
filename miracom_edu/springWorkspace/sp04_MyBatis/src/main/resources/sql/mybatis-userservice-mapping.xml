@@ -22,10 +22,19 @@
 	 	- SQL/Query 의 별칭(Alias)와 UserVO객체의 Field 의 변수이름이 동일한 것 확인.  
 	  -->
 <!-- selectUserList -->
-<!-- select에서 컬럼명과 필드명이 다르면 값을 못받아온다...알리야스를 사용해서 이문제를 해결한다. -->
+<!-- 
+	select 에서 컬럼명과 필드명이 다르면 값을 못받아온다.. 알리야스를 사용해서 이 문제를 해결한다.
+	select 절에서의 컬럼이름은 vo alias 이름과 상호 호환된다.
+	user_id ====   setUserId() | getUserId()     X
+	userId  ====   setUserId() | getUserId()     O
+	
+	DB 테이블의 colunm명과 vo 클래스의 field명을 일치시키는 것이 좋다.
+	만약, 컬럼명과 필드명이 일치하지 않는 경우에는
+	컬럼의 alias를 필드명으로 해주어야 값이 null로 나오는 것을 방지 할 수 있다.
+-->
  	<select id="getUserList" resultType="user"> <!-- conection에 제너릭이 들어감. -->
  		SELECT
- 		user_id AS userId, 
+ 		user_id AS userId, <!-- AS를 이용하여 field명을 통일화 -->
  		user_name AS userName, 
  		password, 
  		age, 

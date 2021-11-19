@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	id = getUser, findUserId에 해당하는 SELECT문을 작성하는 쿼리문
+	1. #{VALUE}
+	parameterType에 연결된 단순 파라미터 값을 받을때, 사용하는 문법
+	#{} 안에 들어가는 VALUE는 상징적인 값으로 아무 변수 이름을 넣어도 상관없다.
+	
+	2. parameterType이 vo의 alias인 경우,
+		#{userId} #{password}
+		vo의 getUserId() getPassword와 연결되는 getter문법이다.
+ -->
+ 
+<!-- SQL definition -->
+<mapper namespace="UserMapper01">
+	<select id="getUser" parameterType="string" resultType="user">
+ 		SELECT
+ 		user_id AS userId,
+ 		user_name AS userName, 
+ 		password, 
+ 		age, 
+ 		grade, 
+ 		reg_date AS regDate
+ 		FROM users
+ 		WHERE user_id LIKE #{VALUE}
+	</select>
+	<select id="findUserId" parameterType="user" resultType="string">
+		SELECT
+		user_name
+		FROM
+		users
+		WHERE user_id = #{userId} <!-- user.getUserId() -->
+		AND password = #{password}
+	</select>
+</mapper>
