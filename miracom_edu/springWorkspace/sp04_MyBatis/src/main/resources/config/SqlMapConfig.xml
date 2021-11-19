@@ -29,5 +29,6 @@
 	<mappers>
 		<mapper resource="sql/mybatis-userservice-mapping.xml"/>
 		<mapper resource="sql/mybatis-userservice-mapping01.xml"/>
+		<mapper resource="sql/mybatis-userservice-mapping02.xml"/>
 	</mappers>
 </configuration>

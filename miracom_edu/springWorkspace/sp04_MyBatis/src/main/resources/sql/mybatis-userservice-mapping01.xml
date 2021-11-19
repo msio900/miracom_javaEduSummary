@@ -11,6 +11,12 @@
 	2. parameterType이 vo의 alias인 경우,
 		#{userId} #{password}
 		vo의 getUserId() getPassword와 연결되는 getter문법이다.
+		
+	3. parameterType, resultType 의 사용법...
+	4. MyBatis에서는 Collection API, 자바API, 라이브러리 클래스를 Alias로 사용하고 있다.
+	java.lang.String - - string,
+						arraylist
+						list
  -->
  
 <!-- SQL definition -->
