@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- 
+ 		CRUD를 다 완벽하게 구현
+ 		C : INSERT
+ 		R : SELECT
+ 		U : UPDATE
+ 		D : DELETE
+  -->
+<!-- SQL definition -->
+<mapper namespace="UserMapper05">
+	<insert id="addUser" parameterType="user">
+		INSERT INTO
+		users (user_id, user_name, password, age, grade)
+		VALUES(#{userId}, #{userName}, #{password}, #{age},#{grade})
+	
+	</insert>
+	<update id="updateUser" parameterType="user">	
+		UPDATE
+		users
+		SET user_name = #{userName}, password = #{password}, age =#{age}
+		WHERE user_id=#{userId}
+	</update>
+</mapper>

@@ -4,11 +4,27 @@
 <configuration>
 	<!-- 1. db정보를 가지고 온다. -->
 	<properties resource="config/dbconn.properties"/>
-	
-	
+	<!-- 
+		Oracle 벤더인 경우, 
+		null값을 입력해야하는 경우에는, 반드시 옵션을 추가해줘야한다...추가 안하면 jdbcTypeForNull~~에러 발생.
+		settings 옵션의 위치가 중요한데,
+		properties 태그 바로 다음에 반드시 지정해야한다.
+		
+		MySQL 벤더인 경우,
+		null값 허용하도록 기본세팅이 잡혀 있기 때문에
+		옵션을 주지 않아도 된다.
+		
+	 -->
+	<settings>
+<!-- 		<setting name="jdbcTypeForNull" value="NULL"/> -->
+		<setting name="mapUnderscoreToCamelCase" value="True"/>
+		<!-- 알아서 소문자로 꼬꾸라짐.! -->
+	</settings>
 	<!-- 2. vo를 alias.... -->
 	<typeAliases>
-		<typeAlias type="ibatis.services.domain.User" alias="user"/>
+		<package name="ibatis.services.domain"/><!-- user,MyProduct -->
+		
+		
 	</typeAliases>
 	
 	
@@ -28,8 +44,10 @@
 	<!-- sql mapper -->
 	<mappers>
 		<mapper resource="sql/mybatis-userservice-mapping.xml"/>
-		<mapper resource="sql/mybatis-userservice-mapping01.xml"/>
+ 		<mapper resource="sql/mybatis-userservice-mapping01.xml"/>
 		<mapper resource="sql/mybatis-userservice-mapping02.xml"/>
 		<mapper resource="sql/mybatis-userservice-mapping03.xml"/>
+		<mapper resource="sql/mybatis-userservice-mapping05.xml"/>
+		<mapper resource="sql/mybatis-userservice-mapping07.xml"/>
 	</mappers>
 </configuration>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	| 중요 | 
+	1. MyBastis에서는 
+	ParameterType은 사용, ParameterMap은 사용하지 않는다. - 비권장
+	
+	ResultType은 ResultMap과 함께 사용되어진다...
+	비즈니스로직의 return타입과 연관된 속성.
+	
+	ResultMap(결과 맵)
+	1)
+	SELECT 구문에서만 사용되는 속성
+	INSERT, DELETE, UPDATE에서는 사용 안됨
+	2)
+	DB컬럼 타입과 VO클래스의 필드이름이 다를경우
+	결과 셋의 명료함을 위해서 사용함.	
+	
+	2. MyBatis에서는 정적인 쿼리와 함께 동적 쿼리를 제공한다.
+	정적쿼리(Static Query) : 지금까지는 정적쿼리는 계속 사용해왔음
+	동적쿼리(Dynamic Query)
+		동적쿼리는 
+		SELECT구문에서 WHERE절의 조건이 변할때 마다 계속적으로 SELECT구문이 생성되어지는 부분을
+		효율적으로 다룰수 있게 한다.
+		WHERE절의 조건이 변하더라도 하나의 SELECT절로 다 처리할수 있는 쿼리문으로 재사용성을 높였다.
+	
+ -->
+<mapper namespace="UserMapper07">
+	<resultMap type="user" id="userSelectRM">
+		<result property="userId" column="user_id"/>
+		<result property="userName" column="user_name"/>
+		<result property="password" column="password"/>
+		<result property="age" column="age"/>
+		<result property="grade" column="grade"/>
+		<result property="regDate" column="regdate"/>
+	</resultMap>
+	<!-- select 문에서 resultType대신에 resultMap을 사용함 -->
+	<!-- 
+		만약에 resulMap을 안쓰면 select에서 AS를 일일이 다 달아주어야 한다.
+	 -->
+	<select id="getUserList01" resultMap="userSelectRM" parameterType="user">
+		SELECT
+		user_id, user_name, password, age, grade, reg_date
+		FROM users
+		WHERE user_id=#{userId}	
+	</select>
+	
+	<!-- 
+		동적쿼리사용
+		WHERE절 조건이 바뀌더라도 하나의 SELECT문으로 여러 쿼리문을 소화할 수 있어서
+		반복적으로 쿼리문을 작성하는 번거로움을 피할 수 있다.
+	 -->
+	 <select id="getUserList" parameterType="user" resultMap="userSelectRM">
+    	SELECT
+		user_id, user_name, password, age, grade, reg_date
+		FROM users
+		<where>
+			<if test="userName !=null">
+				user_name LIKE #{userName}
+			</if>
+			<if test="age !=null">
+				OR age LIKE #{age}
+			</if>
+		</where>
+		ORDER BY user_id DESC
+    </select>
+
+</mapper>
