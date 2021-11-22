@@ -2,14 +2,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- SQL definition -->
+<!-- 
+	CRUD를 다 완벽하게 구현
+	C : INSERT
+	R : SELECT
+	U : UPDATE
+	D : DELETE
+ -->
+
 <mapper namespace="MemberMapper">
-	<insert id="registerMember">
+	<sql id="select-member">
+		SELECT
+		id, password, name, address
+		FROM member
+	</sql>
+	<insert id="registerMember" parameterType="memberVO">
+		INSERT
+		INTO member(id, password, name, address)
+		VALUES(#{id},#{password},#{name},#{address})
 	</insert>
-	<delete id="deleteMember">
+	
+	<delete id="deleteMember" parameterType="string">
+		DELETE FROM member WHERE id=#{VALUE}
 	</delete>
-	<update id="updateMember">
+	
+	<update id="updateMember" parameterType="memberVO">
+		UPDATE member SET
+		password = #{password},
+		name = #{name},
+		address = #{address}
+		WHERE id=#{id}
 	</update>
-	<select id="showAllMember">
+	
+	<select id="showAllMember" resultType="memberVO">
+		<include refid="select-member"/>
+	</select>
+	
+	<select id="getMember" parameterType="string" resultType="memberVO">
+		<include refid="select-member"/>
+		WHERE id=#{VALUE}
+	</select>
+	
+	<select id="idExist" resultType="string" parameterType="string">
+		SELECT id FROM member WHERE id=#{value}
 	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,34 +2,43 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- 1. db정보를 가지고 온다. -->
-	<properties resource="config/dbconn.properties"/>
-	
-	
-	<!-- 2. vo를 alias.... -->
-	<typeAliases>
-		<typeAlias type="ibatis.services.domain.User" alias="user"/>
-	</typeAliases>
-	
-	
-	<!-- 3. jdbc 환경 구축 -->
-	<environments default="mulcam">
-		<environment id="mulcam" >
-			<transactionManager type="JDBC"/>
-			<dataSource type="UNPOOLED">
-				<property name="driver" value="${jdbc.mysql.driver}"/>
-				<property name="url" value="${jdbc.mysql.url}"/>
-				<property name="username" value="${jdbc.mysql.username}"/>
-				<property name="password" value="${jdbc.mysql.password}"/>
-			
-			</dataSource>
-		</environment>
-	</environments>
-	<!-- sql mapper -->
-	<mappers>
-		<mapper resource="sql/mybatis-userservice-mapping.xml"/>
-		<mapper resource="sql/mybatis-userservice-mapping01.xml"/>
-		<mapper resource="sql/mybatis-userservice-mapping02.xml"/>
-		<mapper resource="sql/mybatis-userservice-mapping03.xml"/>
-	</mappers>
+	<properties resource="config/dbconn.properties"/> 
+
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+ 	<typeAliases>
+ 		<package name="spring.service.domain"/>
+ 	</typeAliases>
+ 	
+	<environments default="development">
+ 		<environment id="development">
+ 			<transactionManager type="JDBC"/>
+ 			<dataSource type="UNPOOLED">
+ 				<property name="driver" value="${jdbc.mysql.driver}"/>
+ 				<property name="url" value="${jdbc.mysql.url}"/>
+ 				<property name="username" value="${jdbc.mysql.username}"/>
+ 				<property name="password" value="${jdbc.mysql.password}"/> 			
+ 			</dataSource>
+ 		</environment>
+ 	</environments> 
+ 	
+ 	<mappers>
+  		<mapper resource="mapper/mybatis-memberservice-mapping.xml"/>
+ 	</mappers>
 </configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

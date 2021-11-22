@@ -2,9 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 
-	 쿼리문의 재사용성을 증가 시킴
-	 1) SQL	 2) INCLUDE
-	 태그를 사용하겠다.
+	지금까지 배운 모든 내용을 이곳에 다 연결해서 적용.
+	1. CRUD
+	2. Dynamic Query
+	3. Static Query
+	4. sql, include 태그를 이용한 퀴리문 재사용
+	5. ResultMap 사용으로 as Alias 사용을 줄임.
+	===
+	6. LIKE 연산자와 와일드 카드 사용법은 지금은 없다..~Mapping02.xml을 참고하기 바람.
  -->
 <mapper namespace="UserMapper10">
 	<resultMap type="user" id="userSelectRM">
@@ -23,14 +28,36 @@
 	<sql id="orderby-userid-desc">
 		ORDER BY user_id DESC
 	</sql>
+	<!-- INSERT -->
+	<insert id="addUser" parameterType="user">
+		INSERT INTO
+		users (user_id, user_name, password, age, grade)
+		VALUES(#{userId}, #{userName}, #{password}, #{age},#{grade})
 	
-	<select id="getUserList01" resultMap="userSelectRM" parameterType="user">
+	</insert>
+
+	<!-- DELETE -->
+	<delete id="removeUser" parameterType="string">
+		DELETE FROM
+		users
+		WHERE user_id=#{VALUE}	
+	</delete>
+	<!-- UPSATE -->
+	<update id="updateUser" parameterType="user">	
+		UPDATE
+		users
+		SET user_name = #{userName}, password = #{password}, age =#{age}
+		WHERE user_id=#{userId}
+	</update>
+
+	<!-- SELECT :: 정적쿼리-->
+	<select id="getUser" resultMap="userSelectRM" parameterType="user">
 		SELECT
 		user_id, user_name, password, age, grade, reg_date
 		FROM users
 		WHERE user_id=#{userId}	
 	</select>
-	<!-- WHERE절에 따라서 쿼리문을 4개 작성하는 것이 아니라 단, 하나의 쿼리문으로 4개의 SELECT절이 돌아감. -->
+	<!-- SELECT :: 동적쿼리-->
 	 <select id="getUserList" parameterType="user" resultMap="userSelectRM">
     	<include refid="select-users"/>
 		<where>
@@ -43,9 +70,4 @@
 		</where>
 		<include refid="orderby-userid-desc"/>
     </select>
-	
-	
-	
-	
-
 </mapper>
