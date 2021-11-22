@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	 쿼리문의 재사용성을 증가 시킴
+	 1) SQL	 2) INCLUDE
+	 태그를 사용하겠다.
+ -->
+<mapper namespace="UserMapper08">
+	<resultMap type="user" id="userSelectRM">
+		<result property="userId" column="user_id"/>
+		<result property="userName" column="user_name"/>
+		<result property="password" column="password"/>
+		<result property="age" column="age"/>
+		<result property="grade" column="grade"/>
+		<result property="regDate" column="regdate"/>
+	</resultMap>
+	<sql id="select-users">
+		SELECT
+		user_id, user_name, password, age, grade, reg_date
+		FROM users
+	</sql>
+	<sql id="orderby-userid-desc">
+		ORDER BY user_id DESC
+	</sql>
+	
+	<select id="getUserList01" resultMap="userSelectRM" parameterType="user">
+		SELECT
+		user_id, user_name, password, age, grade, reg_date
+		FROM users
+		WHERE user_id=#{userId}	
+	</select>
+	<!-- WHERE절에 따라서 쿼리문을 4개 작성하는 것이 아니라 단, 하나의 쿼리문으로 4개의 SELECT절이 돌아감. -->
+	 <select id="getUserList" parameterType="user" resultMap="userSelectRM">
+    	<include refid="select-users"/>
+		<where>
+			<if test="userName !=null">
+				user_name LIKE #{userName}
+			</if>
+			<if test="age !=null">
+				OR age LIKE #{age}
+			</if>
+		</where>
+		<include refid="orderby-userid-desc"/>
+    </select>
+	
+	
+	
+	
+
+</mapper>
