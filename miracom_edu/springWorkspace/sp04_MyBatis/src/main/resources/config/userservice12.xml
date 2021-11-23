@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- MyBatis와 DI 연결 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	
+	<context:property-placeholder location="classpath:config/dbconn.properties"/>
+	
+	<!-- 1. DataSouce API Bean -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.mysql.driver}"/>
+		<property name="url" value="${jdbc.mysql.url}"/>
+		<property name="username" value="${jdbc.mysql.username}"/>
+		<property name="password" value="${jdbc.mysql.password}"/>
+	</bean>
+	
+	<!-- 2. MyBatis API Bean :: SqlSessionFactoryBean -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:config/SqlMapConfig.xml"/>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- 3. MyBatis API Bean :: SqlSession -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<!-- 생성자 주입 -->
+		<constructor-arg ref="sqlSessionFactoryBean"/>
+	</bean>
+	<!-- 4. DAOImpl12 사용자 정의 Bean -->
+	<bean id="myBatisUserDAOImpl12" class="ibatis.services.user.impl.MyBatisUserDAOImpl12">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	
+	<!-- 5. ServiceImpl12 사용자 정의 -->
+	<bean id="myBatisUserServiceImpl12" class="ibatis.services.user.impl.MyBatisUserServiceImpl12">
+		<property name="userDAO" ref="myBatisUserDAOImpl12"></property>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

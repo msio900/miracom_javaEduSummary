@@ -29,6 +29,7 @@
 	
 	
 	<!-- 3. jdbc 환경 구축 -->
+	<!-- 단위 테스트 용...MyBatisFramework를 위한...DI와 연결하기 전의 -->
 	<environments default="mulcam">
 		<environment id="mulcam" >
 			<transactionManager type="JDBC"/>

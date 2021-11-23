@@ -8,7 +8,7 @@ import ibatis.services.user.UserService;
 /*
  * 바로 뒤에 레이어...UserDAO를 DI(Dependent Injection)하면 됨.
  */
-public class MyBatisUserServiceImpl11 implements UserService {
+public class MyBatisUserServiceImpl12 implements UserService {
 	private UserDAO userDAO;
 	
 	public void setUserDAO(UserDAO userDAO) {

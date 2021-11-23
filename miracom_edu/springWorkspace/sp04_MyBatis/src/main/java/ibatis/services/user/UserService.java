@@ -14,7 +14,7 @@ import ibatis.services.domain.User;
  *1) Service 레이어와 가장 직결된 메소드는?? getUser, getUserList
  *2) Service 레이어와 가장 관련이 없는 메소드는??removeUser
  */
-public interface Userservice {
+public interface UserService {
 	void addUser(User user) throws Exception;
 	void updateUser(User user) throws Exception;
 
