@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- bean을 등록한다...일종의 주문서, 이 주문서를 BeanContainer가 읽어서 Bean을 생성한다. -->
+<!-- 결과 페이지의 위치와 확장자 정보를 가지고 있는API Bean :: InternalViewResourceViewReslover -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/results/"/><!-- 결과페이지 물리적인 저장 위치 -->
+		<property name="suffix" value=".jsp"/><!-- 결과페이지의 확장자 등록 -->
+	</bean>
+	
+	
+	<!-- 사용자 정의 Bean을 등록 name 속성 값으로는 어떤 요청이 들어왔을떼 ControllerFactory가 생성해주는 컴포넌트인지를 등록-->
+<bean name="/main.do" class="com.edu.spring.controller.MainController"></bean>
+</beans>

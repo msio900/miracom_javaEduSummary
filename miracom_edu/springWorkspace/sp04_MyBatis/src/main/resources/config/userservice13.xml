@@ -1,21 +1,3 @@
-# 21.11.23. spring-5일차
-
-## 어제 복습
-
-![](./image/1123-01.png)
-
-## 1123 수업 이슈
-
-1. MyBatis DI 연결
-   * Annotation
-2. Spring MVC - Maven
-3. Spring MVC - MyBatis - DI
-
-## MyBatis를 DI로 연결
-
-* userservice12.xml
-
-```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- MyBatis와 DI 연결 -->
@@ -46,62 +28,32 @@
 		<!-- 생성자 주입 -->
 		<constructor-arg ref="sqlSessionFactoryBean"/>
 	</bean>
-	<!-- 4. DAOImpl12 사용자 정의 Bean -->
-	<bean id="myBatisUserDAOImpl12" class="ibatis.services.user.impl.MyBatisUserDAOImpl12">
-		<property name="sqlSession" ref="sqlSession"/>
-	</bean>
 	
-	<!-- 5. ServiceImpl12 사용자 정의 -->
-	<bean id="myBatisUserServiceImpl12" class="ibatis.services.user.impl.MyBatisUserServiceImpl12">
-		<property name="userDAO" ref="myBatisUserDAOImpl12"></property>
-	</bean>
+	<!-- 4. DAOImpl12 사용자 정의 Bean Annotation-->
+
+	<!-- 5. ServiceImpl12 사용자 정의 Bean Annotation-->
+	<context:component-scan base-package="ibatis.services.user.impl"/>
+	<!-- Annotation을 한 대신에, 반드시 이 태그를 달아줘야함. -->
 </beans>
-```
 
-#### Annotation -> xml 빈 설정문서 (주문서)
 
-간단해진다.
 
-## presentation layer
 
-![](./image/1123-02.png)
 
-## maven 기반
 
-com
 
- - edu
-   - XXXXX
-   - spring
-     - mybatis
-     - 
- - marketing
 
-1. 패키지를 3층 이상 넣기
-2. src의 다각화
 
-## MAven 기반이란?
 
-1. project 생성시 package 계층을 최소 3개 이상 요구!
 
-   ex) com.edu.spring
 
-   group id artifact id
 
-2. src 다각화 
 
-   java code
 
-   설정문서
 
-   unittest code
 
-3. 라이브러리를 일일이 추가 하지 않아도 됨.
 
-   pom.xml
 
-4. sts 기능을 추가하면 spring configuration File을 생성할 수 있음.
 
-## 레이어 정리
 
-![](./image/1123-03.png)
+
