@@ -15,7 +15,19 @@
 5) 제품 정보 수정하기
 -->
 <mapper namespace="ns.sql.MyProductMapper">
-   <insert id="addProduct">
+	<!-- 
+		화면으로 부터 받은 form값을 가지고vo가 생성됨.
+		(이때, id 값은 들어 있지 않다...o값을 가지고 있다...나머지 값은 에어콘, 삼성, 2300000)
+		vo를 DB에 insert시키면 DB에서id값은 자동증가되어서...4가 되어져 있다.
+		
+		결론 
+		vo의 데이터와 DB 테이블이 row가 동기화, 일치되는 상황이 이럴때 발생한다.
+		
+		정리
+		INSERT문에서 발생하는 문제로...
+		DB에서 자동증가하는 값이 하필 PK일때 발생하는 문제이다.
+	 -->
+   <insert id="addProduct" parameterType="myProduct" useGeneratedKeys="true" keyProperty="id">
       INSERT
       INTO myproduct (name, maker, price) VALUES (#{name},#{maker},#{price})
    </insert>

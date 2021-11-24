@@ -19,20 +19,20 @@ public class MyProductDAOImpl implements MyProductDAO{
 
 	@Override
 	public int addProduct(MyProduct vo) throws Exception {		
-		int result=sqlSession.insert(NS+"addProduct", vo);
+		int result=sqlSession.insert(NS+".addProduct", vo);
 		return result;
 	}
 	@Override
 	public List<MyProduct> findProducts() throws Exception {		
-		return sqlSession.selectList(NS+"findProducts");
+		return sqlSession.selectList(NS+".findProducts");
 	}
 	@Override
 	public List<MyProduct> findProductByName(String name) throws Exception {		
-		return sqlSession.selectList(NS+"findProductByName",name);
+		return sqlSession.selectList(NS+".findProductByName",name);
 	}
 	@Override
 	public List<MyProduct> findProductByMaker(String maker) throws Exception {		
-		return sqlSession.selectList(NS+"findProductByMaker",maker);
+		return sqlSession.selectList(NS+".findProductByMaker",maker);
 	}
 }
 
