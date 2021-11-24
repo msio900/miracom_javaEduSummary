@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<!-- 
+1) 상품등록
+2) 등록된 모든 상품정보를 검색
+3) 통돌이~~ 세탁기, 드럼~~ 세탁기, ~~ 공기청정기,
+   이럴 때 like %, _      == like연산자와 와일드카드 사용
+   ==
+   '세탁기' 라는 단어가 포함된 제품을 검색
+4) 제조사별 검색
+5) 제품 정보 수정하기
+-->
+<mapper namespace="ns.sql.MyProductMapper">
+   <insert id="addProduct">
+      INSERT
+      INTO myproduct (name, maker, price) VALUES (#{name},#{maker},#{price})
+   </insert>
+      
+   <sql id="select-myproduct">
+      SELECT id, name, maker, price FROM myproduct
+   </sql>
+   <select id="findProducts" resultType="myproduct">
+      <include refid="select-myproduct"></include>
+   </select>
+     
+   <!-- 특정한 상품명이 들어가는 제품검색.. -->
+   <select id="findProductByName" resultType="myproduct" parameterType="string">
+      <include refid="select-myproduct"></include>
+      WHERE name LIKE '%' #{value} '%'
+   </select>
+     
+   <select id="findProductByMaker" resultType="myproduct" parameterType="string">
+      <include refid="select-myproduct"></include>
+      WHERE maker LIKE #{value}
+   </select>
+      
+   <update id="updateProduct">
+      UPDATE myproduct SET name=#{name}, maker=#{maker}, price=#{price}
+      WHERE id=#{id}
+   </update>
+</mapper>
