@@ -19,7 +19,7 @@
 <h3>상품명, 제조사별 검색방법을 먼저 선택하세요.</h3>
 <form action="myProductSearch.do">
 <select name="command">
-	<option value=""====아래에서 선택하세요 ====></option>
+	<option value="===아래에서 선택하세요 ==="></option>
 	<option value="findByProductName">상품명으로 검색하기</option>
 	<option value="findByProductMaker">제조사로 검색하기</option>
 	<option value="findByProductId">상품 아이디로 검색하기</option>

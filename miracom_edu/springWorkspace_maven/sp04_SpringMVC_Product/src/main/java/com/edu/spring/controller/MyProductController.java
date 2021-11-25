@@ -27,13 +27,18 @@ public class MyProductController {
 	
 	@RequestMapping("myProductSearch.do")
 	public ModelAndView search(String word, String command) throws Exception{
-		ModelAndView mv = null;
+		List<MyProduct> list = null;
+		String viewName = "";
+		
 		if(command.equals("findByProductName")) {
-			List<MyProduct> list = myProductService.findProductByName(word);
-			mv = new ModelAndView("find_result", "list", list);
+			list = myProductService.findProductByName(word);
+			viewName = "find_result";
+		}else if (command.equals("findByProductMaker")) {
+			list = myProductService.findProductByMaker(word);
+			viewName = "find_result";
 		}
 		
-		return mv;
+		return new ModelAndView(viewName,"list", list);
 
 		}
 		
