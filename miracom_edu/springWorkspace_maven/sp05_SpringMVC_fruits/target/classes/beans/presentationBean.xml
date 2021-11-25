@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+<context:property-placeholder location="classpath:config/dbconn.properties"/>
+
+<!-- InternalResourceViewReslover API 빈 등록-->
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/views/"/> <!--  결과페이지의 물리적인 저장 위치-->
+	<property name="suffix" value=".jsp"/> <!-- 결과 페이지의 확장자 등록 -->
+</bean>
+	
+	<!-- Annotation 에서는 반드시 이 부분을 추가해야한다. -->
+<context:component-scan base-package="com.edu.spring.controller"/>
+</beans>

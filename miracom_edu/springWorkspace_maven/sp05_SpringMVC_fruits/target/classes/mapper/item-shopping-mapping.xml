@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	필요한 쿼리문을 작성해 주시기 바랍니다.
+	이때 쿼리문의 id도 직접 작성해 보시기 바랍니다.
+ -->
+<mapper namespace="ns.sql.ItemMapper">
+
+	<resultMap type="item" id="selectRM">
+		<result property="itemNumber" column="item_id"/>
+		<result property="name" column="item_name"/>
+		<result property="price" column="price"/>
+		<result property="description" column="description"/>
+		<result property="url" column="picture_url"/>
+	</resultMap>
+	
+	<sql id="select-item">
+		SELECT 
+		item_id, item_name, price, description, picture_url
+		FROM
+		item
+	</sql>
+	
+	<select id="getItemList" resultMap="selectRM">
+		<include refid="select-item" />
+	</select>
+	
+	<select id="getItem" resultMap="selectRM" parameterType="int">
+		<include refid="select-item" />
+		WHERE item_id LIKE #{VALUE}
+	</select>
+	
+</mapper>
+
+
+
+
