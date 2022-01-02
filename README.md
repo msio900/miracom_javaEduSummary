@@ -10,7 +10,7 @@
 
 > 이여진 강사
 
-* 21.10.18 (월) [SelfLeadershipLecture](./211018 셀프리더십 특강.md)
+* 21.10.18 (월) [SelfLeadershipLecture](./211018셀프리더십특강.md)
 
 ## JAVA☕
 
@@ -24,3 +24,6 @@
   * [Constructor](./miracom_edu/javaWorkspace/java04_Constructor)
   * [work01](./miracom_edu/javaWorkspace/work01)
 
+## 자소서 특강🖋️
+
+* 21.11.26 (월) [👉](./211126자소서특강.md)
